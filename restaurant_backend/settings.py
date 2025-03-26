@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-4$md217fmyqat95bug&mu2h(9w6tf9nxk+o$%&2rmnz1&=u5)5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://restaurant-backend-tdw1.onrender.com']
+ALLOWED_HOSTS = ['restaurant-backend-tdw1.onrender.com']
 
 import dj_database_url
 import os
