@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import *
 
-
 class TableSerializer(serializers.ModelSerializer):
     class Meta:
         model = Table
@@ -14,8 +13,16 @@ class CustomizationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class CustomizationCategorySerializer(serializers.ModelSerializer):
     customizations = CustomizationSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = CustomizationCategory
+        fields = '__all__'
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    customization_categories = CustomizationCategorySerializer(many=True, read_only=True)
 
     class Meta:
         model = Product

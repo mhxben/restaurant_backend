@@ -17,13 +17,22 @@ class Product(models.Model):
         return f"{self.name} - {self.category}"
 
 
+class CustomizationCategory(models.Model):
+    name = models.CharField(max_length=20)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="customization_categories")
+
+    def __str__(self):
+        return f"{self.name} for {self.product.name}"
+
+
+
 class Customization(models.Model):
     name = models.CharField(max_length=20)
     extra_price = models.FloatField()
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    category = models.ForeignKey(CustomizationCategory, on_delete=models.CASCADE, related_name="customizations")
 
     def __str__(self):
-        return f"{self.name} (+{self.extra_price}) for {self.product.name}"
+        return f"{self.name} (+{self.extra_price}) in {self.category.name} for {self.category.product.name}"
 
 
 class Order(models.Model):
