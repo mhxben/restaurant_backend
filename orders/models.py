@@ -11,6 +11,7 @@ class Table(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=20)
     base_price = models.FloatField()
+    description = models.CharField(max_length=500)
     category = models.CharField(max_length=20)
 
     def __str__(self):
