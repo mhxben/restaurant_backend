@@ -34,4 +34,7 @@ class OrderItemViewSet(viewsets.ModelViewSet):
 def drop_orders_product_table():
     from django.db import connection
     with connection.cursor() as cursor:
-        cursor.execute("DROP TABLE IF EXISTS orders_product;")
+        if connection.vendor == 'postgresql':
+            cursor.execute("DROP TABLE IF EXISTS orders_product CASCADE;")
+        else:
+            cursor.execute("DROP TABLE IF EXISTS orders_product;")
