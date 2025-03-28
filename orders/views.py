@@ -30,11 +30,3 @@ class CustomizationViewSet(viewsets.ModelViewSet):
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
-
-def drop_orders_product_table():
-    from django.db import connection
-    with connection.cursor() as cursor:
-        if connection.vendor == 'postgresql':
-            cursor.execute("DROP TABLE IF EXISTS orders_product CASCADE;")
-        else:
-            cursor.execute("DROP TABLE IF EXISTS orders_product;")
